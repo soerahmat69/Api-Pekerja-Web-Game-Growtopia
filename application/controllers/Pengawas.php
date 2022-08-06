@@ -100,10 +100,10 @@ class Pengawas extends RestController
     {
         $id_pengawas = $this->put('id_pengawas');
         $data = array(
-            'id_pengawas' => $this->post('id_pengawas'),
-            'id_user' => $this->post('id_user'),
-            'time_on' => $this->post('time_on'),
-            'rate' => $this->post('rate')
+            'id_pengawas' => $this->put('id_pengawas'),
+            'id_user' => $this->put('id_user'),
+            'time_on' => $this->put('time_on'),
+            'rate' => $this->put('rate')
         );
         //Jika field npm tidak diisi
         if ($id_pengawas == NULL) {
@@ -111,17 +111,17 @@ class Pengawas extends RestController
                 [
                     'status' => $id_pengawas,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'NPM Tidak Boleh Kosong',
+                    'message' => 'id_pengawas Tidak Boleh Kosong',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
             //Jika data berhasil berubah
-        } elseif ($this->Pengawas_Model->updateBlocklist($data, $id_pengawas) > 0) {
+        } elseif ($this->Pengawas_Model->updatePengawas($data, $id_pengawas) > 0) {
             $this->response(
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_CREATED,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $id_pengawas . ' Berhasil Diubah',
+                    'message' => 'Data Pengawas  ' . $id_pengawas . ' Berhasil Diubah',
                 ],
                 RestController::HTTP_CREATED
             );
@@ -146,17 +146,17 @@ class Pengawas extends RestController
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'NPM Tidak Boleh Kosong',
+                    'message' => 'id_pengawas Tidak Boleh Kosong',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
             //Kondisi ketika OK
-        } elseif ($this->Pengawas_Model->deleteBlocklist($id_pengawas) > 0) {
+        } elseif ($this->Pengawas_Model->deletePengawas($id_pengawas) > 0) {
             $this->response(
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_OK,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $id_pengawas . ' Berhasil Dihapus',
+                    'message' => 'Data pengawas' . $id_pengawas . ' Berhasil Dihapus',
                 ],
                 RestController::HTTP_OK
             );
@@ -166,7 +166,7 @@ class Pengawas extends RestController
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $id_pengawas . ' Tidak Ditemukan',
+                    'message' => 'Data Penagwas ' . $id_pengawas . ' Tidak Ditemukan',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );

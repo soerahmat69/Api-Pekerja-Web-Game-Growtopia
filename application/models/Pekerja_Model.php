@@ -12,11 +12,15 @@ class Pekerja_Model extends CI_Model
             $this->db->from($this->t);
             $this->db->where('id_pekerja', $id_pekerja);
             $this->db->join('user',' user.id_user = pekerja.id_pekerja');
+            $this->db->join('kategori_pekerja',' kategori_pekerja.id_kateg = pekerja.id_pekerja');
+            $this->db->select('id_pekerja,user.growid,kategori_pekerja.nama_kategori,status');
             $query = $this->db->get()->row_array();
             return $query;
         } else {
             $this->db->from($this->t);
             $this->db->join('user',' user.id_user = pekerja.id_pekerja');
+            $this->db->join('kategori_pekerja',' kategori_pekerja.id_kateg = pekerja.id_pekerja');
+            $this->db->select('id_pekerja,user.growid,kategori_pekerja.nama_kategori,status');
             $query = $this->db->get()->result_array();
             return $query;
         }

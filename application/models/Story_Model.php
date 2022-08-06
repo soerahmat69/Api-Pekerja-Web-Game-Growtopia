@@ -12,14 +12,14 @@ class Story_Model extends CI_Model
             $this->db->from($this->story);
             $this->db->where('id_story', $id_story);
             $this->db->join('user','user.id_user = story.id_user');
-            $this->db->select('user.username,pesan');
+            $this->db->select('id_story,user.username,pesan,tanggal');
             $query = $this->db->get()->row_array();
             return $query;
         } else {
 
             $this->db->from($this->story);
             $this->db->join('user','user.id_user = story.id_user');
-            $this->db->select('user.username,pesan');
+            $this->db->select('id_story,user.username,pesan,tanggal');
             $query = $this->db->get()->result_array();
             return $query;
         }
@@ -36,7 +36,7 @@ class Story_Model extends CI_Model
     }
 
     //fungsi untuk mengubah data
-    public function updateStory($data, $id_film)
+    public function updateStory($data, $id_story)
     {
         //Menggunakan Query Builder
         $this->db->update($this->story, $data, ['id_story' => $id_story]);

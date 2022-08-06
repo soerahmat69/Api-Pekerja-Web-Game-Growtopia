@@ -100,10 +100,10 @@ class Blocklist extends RestController
     {
         $id_block_list = $this->put('id_block_list');
         $data = array(
-            'id_block_list' => $this->post('id_block_list'),
-            'id_user' => $this->post('id_user'),
-            'deskripsi' => $this->post('deskripsi'),
-            'tanggal' => $this->post('tanggal')
+            'id_block_list' => $this->put('id_block_list'),
+            'id_user' => $this->put('id_user'),
+            'deskripsi' => $this->put('deskripsi'),
+            'tanggal' => $this->put('tanggal')
         );
         //Jika field npm tidak diisi
         if ($id_block_list == NULL) {

@@ -49,7 +49,7 @@ class Story extends RestController
             'pesan' => $this->post('pesan'),
             'tanggal' => $this->post('tanggal')
         );
-        $cekdata = $this->Story_Model->getFilm($this->post('id_story'));
+        $cekdata = $this->Story_Model->getStory($this->post('id_story'));
         //Jika semua data wajib diisi
 
         if (
@@ -100,10 +100,10 @@ class Story extends RestController
     {
         $id_story = $this->put('id_story');
         $data = array(
-            'id_story' => $this->post('id_story'),
-            'id_user' => $this->post('id_user'),
-            'pesan' => $this->post('pesan'),
-            'tanggal' => $this->post('tanggal')
+            'id_story' => $this->put('id_story'),
+            'id_user' => $this->put('id_user'),
+            'pesan' => $this->put('pesan'),
+            'tanggal' => $this->put('tanggal')
         );
         //Jika field npm tidak diisi
         if ($id_story == NULL) {
@@ -111,17 +111,17 @@ class Story extends RestController
                 [
                     'status' => $id_story,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'NPM Tidak Boleh Kosong',
+                    'message' => 'id_story Tidak Boleh Kosong',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
             //Jika data berhasil berubah
-        } elseif ($this->Story_model->updateStory($data, $id_story) > 0) {
+        } elseif ($this->Story_Model->updateStory($data, $id_story) > 0) {
             $this->response(
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_CREATED,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $npm . ' Berhasil Diubah',
+                    'message' => 'Data Story ' . $id_story . ' Berhasil Diubah',
                 ],
                 RestController::HTTP_CREATED
             );
@@ -146,7 +146,7 @@ class Story extends RestController
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'NPM Tidak Boleh Kosong',
+                    'message' => 'id_story Tidak Boleh Kosong',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
@@ -156,7 +156,7 @@ class Story extends RestController
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_OK,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $id_story . ' Berhasil Dihapus',
+                    'message' => 'Data story ' . $id_story . ' Berhasil Dihapus',
                 ],
                 RestController::HTTP_OK
             );
@@ -166,7 +166,7 @@ class Story extends RestController
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $id_story . ' Tidak Ditemukan',
+                    'message' => 'Data story  ' . $id_story . ' Tidak Ditemukan',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );

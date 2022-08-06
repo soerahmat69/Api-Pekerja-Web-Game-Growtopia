@@ -18,7 +18,7 @@ class Pekerja extends RestController
     public function p_get()
     {
         $id_pekerja = $this->get('id_pekerja');
-        $data = $this->Pekerja_Model->getStory($id_pekerja);
+        $data = $this->Pekerja_Model->getPekerja($id_pekerja);
         if ($data) {
             $this->response(
                 [
@@ -44,7 +44,7 @@ class Pekerja extends RestController
     public function p_post()
     {
         $data = array(
-            'id_pekerja' => $this->post('id_story'),
+            'id_pekerja' => $this->post('id_pekerja'),
             'id_user' => $this->post('id_user'),
             'kategori' => $this->post('kategori'),
             'status' => $this->post('status')
@@ -100,10 +100,10 @@ class Pekerja extends RestController
     {
         $id_pekerja = $this->put('id_pekerja');
         $data = array(
-            'id_pekerja' => $this->post('id_story'),
-            'id_user' => $this->post('id_user'),
-            'kategori' => $this->post('kategori'),
-            'status' => $this->post('status')
+            'id_pekerja' => $this->put('id_pekerja'),
+            'id_user' => $this->put('id_user'),
+            'kategori' => $this->put('kategori'),
+            'status' => $this->put('status')
         );
         //Jika field npm tidak diisi
         if ($id_pekerja == NULL) {
@@ -121,7 +121,7 @@ class Pekerja extends RestController
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_CREATED,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $npm . ' Berhasil Diubah',
+                    'message' => 'Data Mahasiswa Dengan NPM ' . $id_pekerja . ' Berhasil Diubah',
                 ],
                 RestController::HTTP_CREATED
             );

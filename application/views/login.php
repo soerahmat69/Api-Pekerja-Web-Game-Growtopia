@@ -30,7 +30,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 				</div>
 				<button class="border-none ring-2 hover:text-black h-8 hover:bg-slate-200  ring-pink-500 ring-inset px-3 bg-slate-800 text-white  border rounded-lg" style=" margin-bottom:15px" type="submit">login</button>
-				<button class="border-none ring-2 hover:text-white h-8 hover:bg-slate-800  ring-pink-500 ring-inset px-3 bg-slate-200 text-black  border rounded-lg" style="margin-bottom:15px; margin-left:15px"> <a style="text-decoration: none;" href="<?= base_url() ?>index.php/welcome/registrasi">registrasi</a></button>
+				<button class="border-none ring-2 hover:text-white h-8 hover:bg-slate-800  ring-pink-500 ring-inset px-3 bg-slate-200 text-black  border rounded-lg" style="margin-bottom:15px; margin-left:15px"> <a style="text-decoration: none;" href="<?= base_url('login/registrasi') ?>">registrasi</a></button>
 			</form>
 		</div>
 	</div>

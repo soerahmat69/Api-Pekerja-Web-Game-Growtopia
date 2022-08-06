@@ -124,7 +124,7 @@ class World extends RestController
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_CREATED,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $world_id . ' Berhasil Diubah',
+                    'message' => 'Data Wrold ' . $world_id . ' Berhasil Diubah',
                 ],
                 RestController::HTTP_CREATED
             );
@@ -149,7 +149,7 @@ class World extends RestController
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'NPM Tidak Boleh Kosong',
+                    'message' => 'world Tidak Boleh Kosong',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
@@ -159,7 +159,7 @@ class World extends RestController
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_OK,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $world_id . ' Berhasil Dihapus',
+                    'message' => 'Data world ' . $world_id . ' Berhasil Dihapus',
                 ],
                 RestController::HTTP_OK
             );
@@ -169,7 +169,7 @@ class World extends RestController
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Mahasiswa Dengan NPM ' . $world_id . ' Tidak Ditemukan',
+                    'message' => 'Data world ' . $world_id . ' Tidak Ditemukan',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );

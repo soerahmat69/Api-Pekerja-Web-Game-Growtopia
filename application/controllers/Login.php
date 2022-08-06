@@ -47,12 +47,16 @@ class Login extends CI_Controller
 			// redirect(base_url('index.php/welcome/registrasi'));
 			echo "username yang anda masukan sudah ada ";
 		} else {
+
+			
 			$data = [
 				'username' => $this->input->post('username'),
 				'password' => $this->input->post('pass')
 			];
 
 			$this->db->insert('user', $data);
+
+			
 			redirect(base_url('login/registrasi'));
 		}
 	}

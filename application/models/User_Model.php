@@ -1,24 +1,20 @@
 <?php
 defined("BASEPATH") or exit('No direct script access allowed');
 
-class Admin_Model extends CI_Model
+class User_Model extends CI_Model
 {
-    private $t = 'admin_world';
+    private $t = 'user';
 
     //fungsi untuk menampilkan data
-    public function getAdmin($id_admin_world)
+    public function getUser($id_user)
     {
-        if ($id_admin_world) {
+        if ($id_user) {
             $this->db->from($this->t);
-            $this->db->where('id_admin_world', $id_admin_world);
-            $this->db->join('user',' user.id_user = admin_world.id_admin_world');
-            $this->db->select('id_admin_world,user.username,status,rate');
+            $this->db->where('id_user', $id_user);
             $query = $this->db->get()->row_array();
             return $query;
         } else {
             $this->db->from($this->t);
-            $this->db->join('user',' user.id_user = admin_world.id_admin_world');
-            $this->db->select('id_admin_world,user.username,status,rate');
             $query = $this->db->get()->result_array();
             return $query;
         }
@@ -26,7 +22,7 @@ class Admin_Model extends CI_Model
     }
 
     //fungsi untuk menambahkan data
-    public function insertAdmin($data)
+    public function insertUser($data)
     {
         //Menggunakan Query Builder
         $this->db->insert($this->t, $data);
@@ -35,19 +31,19 @@ class Admin_Model extends CI_Model
     }
 
     //fungsi untuk mengubah data
-    public function updateAdmin($data, $id_admin_world)
+    public function updateUser($data, $id_user)
     {
         //Menggunakan Query Builder
-        $this->db->update($this->t, $data, ['id_admin_world' => $id_admin_world]);
+        $this->db->update($this->t, $data, ['id_user' => $id_user]);
         return $this->db->affected_rows();
         // return $query;
     }
 
     //fungsi untuk menghapus data
-    public function deleteAdmin($id_admin_world)
+    public function deleteUser($id_user)
     {
         //Menggunakan Query Builder
-        $this->db->delete($this->t, ['id_admin_world' => $id_admin_world]);
+        $this->db->delete($this->t, ['id_user' => $id_user]);
         return $this->db->affected_rows();
         // return $query;
     }

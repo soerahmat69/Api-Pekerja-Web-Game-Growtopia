@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<div class="scale-100 hover:scale-125 duration-300 shadow-md shadow-2xl py-[7px] rounded-md text-center  mx-auto bg-slate-900 w-80">
 			<h1 class="text-ceter text-white text-4xl mb-[18px]">Registrasi Form</h1>
-			<form action="<?= base_url('index.php/login/registrasi_akun'); ?>" method="post">
+			<form action="<?= base_url('login/registrasi_akun'); ?>" method="post">
 				<div class="mb-[12px]">
 					<label class=" text-white" for="">masukan username</label>
 					<input class=" rounded-lg mt-[7px] ring-2 ring-pink-500 " type="text" name="username">

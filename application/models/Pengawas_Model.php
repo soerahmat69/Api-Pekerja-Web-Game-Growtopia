@@ -12,11 +12,13 @@ class Pengawas_Model extends CI_Model
             $this->db->from($this->t);
             $this->db->where('id_pengawas', $id_pengawas);
             $this->db->join('user',' user.id_user = pengawas.id_pengawas');
+            $this->db->select('id_pengawas,user.growid,time_on,rate');
             $query = $this->db->get()->row_array();
             return $query;
         } else {
             $this->db->from($this->t);
             $this->db->join('user',' user.id_user = pengawas.id_pengawas');
+            $this->db->select('id_pengawas,user.growid,time_on,rate');
             $query = $this->db->get()->result_array();
             return $query;
         }
@@ -45,7 +47,7 @@ class Pengawas_Model extends CI_Model
     public function deletePengawas($id_pengawas)
     {
         //Menggunakan Query Builder
-        $this->db->delete($this->t, ['id_pengawasa' => $id_pengawas]);
+        $this->db->delete($this->t, ['id_pengawas' => $id_pengawas]);
         return $this->db->affected_rows();
         // return $query;
     }

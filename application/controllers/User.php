@@ -6,19 +6,19 @@ require APPPATH . 'libraries/RestController.php';
 
 use chriskacerguis\RestServer\RestController;
 
-class Admin_world extends RestController
+class User extends RestController
 {
-    
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_Model');
+        $this->load->model('User_Model');
     }
 
-    public function a_get()
+    //iniadalah n gegettt
+    public function u_get()
     {
-        $id_admin_world = $this->get('id_admin_world');
-        $data = $this->Admin_Model->getAdmin($id_admin_world);
+        $id_user = $this->get('id_user');
+        $data = $this->User_Model->getUser($id_user);
         if ($data) {
             $this->response(
                 [
@@ -40,23 +40,20 @@ class Admin_world extends RestController
         }
     }
 
-    
-    public function a_post()
+    public function u_post()
     {
         $data = array(
-            'id_admin_world' => $this->post('id_admin_world'),
             'id_user' => $this->post('id_user'),
-            'status' => $this->post('status'),
-            'rate' => $this->post('rate')
+            'username' => $this->post('username'),
+            'password' => $this->post('password'),
+            'growid' => $this->post('growid')
         );
-        $cekdata = $this->Admin_Model->getAdmin($this->post('id_admin_world'));
-        //Jika semua data wajib diisi
 
+        $cekdata = $this->User_Model->getUser($this->post('id_user'));
         if (
-            empty($data['id_admin_world'])|| empty($data['id_user']) || empty($data['status'] || empty($data['rate']))
-        ) {
+            empty($data['id_user'])|| empty($data['username']) || empty($data['password']) || empty($data['growid'])) {
             $this->response(
-                [ 
+                [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data Yang Dikirim Tidak Boleh Ada Yang Kosong',
@@ -65,7 +62,7 @@ class Admin_world extends RestController
             );
 
             //Jika data tersimpan
-        }  elseif ($this->Admin_Model->insertAdmin($data) > 0) {
+        }  elseif ($this->User_Model->insertUser($data) > 0) {
             $this->response(
                 [
                     'status' => true,
@@ -74,17 +71,18 @@ class Admin_world extends RestController
                 ],
                 RestController::HTTP_CREATED
             );
-        }
+        } 
         elseif ($cekdata) {
             $this->response(
                 [
-                'status' => false,
-                'response_code' => RestController::HTTP_BAD_REQUEST,
+                    'status' => false,
+                    'response_code' => RestController::HTTP_BAD_REQUEST,
                     'message' => 'Data Sudah Ada',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
-        } else {
+        }
+        else {
             $this->response(
                 [
                     'status' => false,
@@ -95,33 +93,33 @@ class Admin_world extends RestController
             );
         }
     }
-
-    public function a_put()
+    public function u_put()
     {
-        $id_admin_world = $this->put('id_admin_world');
+        $id_user = $this->put('id_user');
         $data = array(
-            'id_admin_world' => $this->put('id_admin_world'),
             'id_user' => $this->put('id_user'),
-            'status' => $this->put('status'),
-            'rate' => $this->post('rate')
+            'username' => $this->put('username'),
+            'password' => $this->put('password'),
+            'growid' => $this->put('growid')
         );
+
         //Jika field npm tidak diisi
-        if ($id_admin_world == NULL) {
+        if ($id_user == NULL) {
             $this->response(
                 [
-                    'status' => $id_admin_world,
+                    'status' => $id_user,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'id_admin_world Tidak Boleh Kosong',
+                    'message' => 'World Tidak Boleh Kosong',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
             //Jika data berhasil berubah
-        } elseif ($this->Admin_Model->updateAdmin($data, $id_admin_world) > 0) {
+        } elseif ($this->User_Model->updateUser($data, $id_user) > 0) {
             $this->response(
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_CREATED,
-                    'message' => 'Data Admin ' . $id_admin_world . ' Berhasil Diubah',
+                    'message' => 'Data Wrold ' . $id_user . ' Berhasil Diubah',
                 ],
                 RestController::HTTP_CREATED
             );
@@ -137,26 +135,26 @@ class Admin_world extends RestController
         }
     }
 
-    public function a_delete()
+    public function u_delete()
     {
-        $id_admin_world = $this->delete('id_admin_world');
+        $id_user = $this->delete('id_user');
         //Jika field npm tidak diisi
-        if ($id_admin_world == NULL) {
+        if ($id_user == NULL) {
             $this->response(
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'id_admin_world Tidak Boleh Kosong',
+                    'message' => 'world Tidak Boleh Kosong',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
             //Kondisi ketika OK
-        } elseif ($this->Admin_Model->deleteAdmin($id_admin_world) > 0) {
+        } elseif ($this->User_Model->deleteUser($id_user) > 0) {
             $this->response(
                 [
                     'status' => true,
                     'response_code' => RestController::HTTP_OK,
-                    'message' => 'Data Admin  ' . $id_admin_world . ' Berhasil Dihapus',
+                    'message' => 'Data world ' . $id_user . ' Berhasil Dihapus',
                 ],
                 RestController::HTTP_OK
             );
@@ -166,11 +164,10 @@ class Admin_world extends RestController
                 [
                     'status' => false,
                     'response_code' => RestController::HTTP_BAD_REQUEST,
-                    'message' => 'Data Admin ' . $id_admin_world . ' Tidak Ditemukan',
+                    'message' => 'Data world ' . $id_user . ' Tidak Ditemukan',
                 ],
                 RestController::HTTP_BAD_REQUEST
             );
         }
     }
-
 }
